@@ -24,6 +24,17 @@
             <li><%= link_to 'Works', works_path %></li>
             <li><%= link_to 'Teams', teams_path %></li>
           </ul>
+
+          <ul class="left">
+            <% if team_signed_in? %>
+            <li><%= link_to current_team.name , edit_team_registration_path %></li>
+            <li><%= link_to 'Log out', destroy_team_session_path, method: :delete %></li>
+            <% else %>
+            <li><%= link_to 'Sign Up', new_team_registration_path %></li>
+            <li><%= link_to 'Sign In', new_team_session_path %></li>
+
+            <% end %>
+          </ul>
         </section>
       </nav>
 

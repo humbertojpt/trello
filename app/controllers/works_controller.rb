@@ -25,7 +25,7 @@ class WorksController < ApplicationController
   # POST /works
   # POST /works.json
   def create
-    @work = Work.new(work_params)
+    @work = current_user.works.new(params[:work])
 
     respond_to do |format|
       if @work.save
@@ -73,6 +73,6 @@ class WorksController < ApplicationController
       params.require(:work).permit(:title, :description, :duration, :begin_date, :end_date, :autor, :check)
     end
     def get_teams
-      @teams = Team.all.map{|team| [team.name, team.name]}
+      @teams = Team.all.map{|team| [team.name, team.id]}
     end
 end
