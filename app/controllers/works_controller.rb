@@ -5,7 +5,7 @@ class WorksController < ApplicationController
   # GET /works
   # GET /works.json
   def index
-    @works = Work.all
+    @works = Work.order("end_date")
   end
 
   # GET /works/1
@@ -25,8 +25,7 @@ class WorksController < ApplicationController
   # POST /works
   # POST /works.json
   def create
-    @work = current_user.works.new(params[:work])
-
+    @work = Work.new(work_params)
     respond_to do |format|
       if @work.save
         format.html { redirect_to @work, notice: 'Work was successfully created.' }

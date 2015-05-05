@@ -33,5 +33,6 @@
 </table>
 
 <br>
-
+<%if team_signed_in? %>
 <%= link_to 'New Work', new_work_path %>
+<% end %>
